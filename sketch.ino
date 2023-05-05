@@ -62,7 +62,7 @@ void loop(){
   float tempf = dht.readTemperature(true);
   float tempk = tempc + 273.15;
   float humidity = dht.readHumidity();
-  float dew_point = (tempc - (100 - humidity) / 5);  //  dew point in celcius
+  float dew_point = (tempc - (100 - humidity) / 5); 
   if (isnan(tempc)  ||  isnan(tempf)  ||  isnan(humidity))
   {
     Serial.println("Sensor not working!");
@@ -90,8 +90,6 @@ void loop(){
       if (subscription  ==  &red)
       {
         String temp = (char *)red.lastread;
-
-        //  converting string to integer
         rval = temp.toInt();
         makecolor(rval , gval , bval);
       }
@@ -99,8 +97,6 @@ void loop(){
       else if (subscription  ==  &green)
       {
         String temp = (char *)green.lastread;
-
-        //  converting string to integer
         gval = temp.toInt();
         makecolor(rval , gval , bval);
       }
@@ -108,8 +104,6 @@ void loop(){
       else if (subscription  ==  &blue)
       {
         String temp = (char *)blue.lastread;
-
-        //  converting string to integer
         bval = temp.toInt();
         makecolor(rval , gval , bval);
       }
@@ -135,8 +129,8 @@ void mqttconnect()
       {
         Serial.println("Can't Connect");
         mqtt.disconnect();
-        Serial.println(mqtt.connectErrorString(connection));  //  printing error message
-        delay(5000);  //  wait for 5 seconds
+        Serial.println(mqtt.connectErrorString(connection));
+        delay(5000);  
       }
     }
   }
